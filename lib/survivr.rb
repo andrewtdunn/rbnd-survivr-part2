@@ -38,7 +38,7 @@ def phase_one
     for i in 1..8
         print_challenge_header(1,i)
         losing_tribe = @borneo.immunity_challenge()
-        puts "losing_tribe: " + losing_tribe.to_s
+        puts "losing tribe: " + losing_tribe.to_s
         loser = losing_tribe.tribal_council()
         voted_off << loser
         puts loser.to_s_with_color + " has been voted off " + losing_tribe.to_s
