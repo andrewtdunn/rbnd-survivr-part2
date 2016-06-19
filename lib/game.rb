@@ -2,10 +2,7 @@ class Game
     attr_reader :tribes
 
     def initialize(*tribes)
-        @tribes = []
-        tribes.each do |tribe|
-            @tribes << tribe
-        end
+        @tribes = tribes
     end
 
     def add_tribe(tribe)
@@ -13,7 +10,7 @@ class Game
     end
 
     def immunity_challenge
-        @tribes[rand(0..1)]
+        @tribes.sample
     end
 
     def individual_immunity_challenge
@@ -32,6 +29,9 @@ class Game
                 new_members << member
             end
         end
-        Tribe.new({name:tribe_name, members: new_members})
+        new_tribe = Tribe.new({name:tribe_name, members: new_members})
+        clear_tribes
+        @tribes << new_tribe
+        new_tribe
     end
 end

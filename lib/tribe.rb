@@ -1,24 +1,16 @@
 class Tribe
     attr_reader :name, :members
 
-    def initialize(obj)
-        @name = obj[:name]
-        @members = obj[:members]
+    def initialize(options)
+        @name = options[:name]
+        @members = options[:members]
         puts @name + " tribe created"
     end
 
-    def tribal_council(*obj)
-        unless obj[0].nil?
-            immune = obj[0][:immune]
-            @members.reject! { |member| member == immune}
-        end
-        rand_num = @members.length-1 > 0 ?rand(0...@members.length-1):0
-        deleted = @members[rand_num]
-        @members.slice!(rand_num)
-        unless obj[0].nil?
-            @members << immune
-        end
-        deleted
+    def tribal_council(options = {})
+        #if options[:immune] doesn't exist it will return as nil, and no members will be immune from the vote.
+        voted_off = @members.reject { |member| member == options[:immune]}.sample
+        @members.delete(voted_off)
     end
 
     def format_members

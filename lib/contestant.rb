@@ -6,7 +6,7 @@ class Contestant
 
     def initialize(name)
         @name = name
-        @color_val = rand(0..@@possible_colors.length-1)
+        @color_val = @@possible_colors.sample
     end
 
     def to_s
@@ -14,6 +14,6 @@ class Contestant
     end
 
     def to_s_with_color
-        to_s.send(@@possible_colors[@color_val])
+        to_s.send(@color_val)
     end
 end

@@ -35,11 +35,11 @@ end
 def phase_one
     print_phase_header(1)
     voted_off = []
-    for i in 1..8
-        print_challenge_header(1,i)
+    8.times do |i|
+        print_challenge_header(1,i+1)
         losing_tribe = @borneo.immunity_challenge()
         puts "losing tribe: " + losing_tribe.to_s
-        loser = losing_tribe.tribal_council()
+        loser = losing_tribe.tribal_council
         voted_off << loser
         puts loser.to_s_with_color + " has been voted off " + losing_tribe.to_s
         puts  "Pagong has " + @coyopa.members.length.to_s + " members"
@@ -54,8 +54,8 @@ def phase_two
     @borneo.add_tribe(@merge_tribe)
     print_phase_header(2)
     voted_off = []
-    for i in 1..3
-        print_challenge_header(2,i)
+    3.times do |i|
+        print_challenge_header(2,i+1)
         immune_member = @borneo.individual_immunity_challenge()
         puts immune_member.to_s_with_color + " is immune"
         loser = @merge_tribe.tribal_council({immune: immune_member})
@@ -70,8 +70,8 @@ end
 def phase_three
     print_phase_header(3)
     voted_off = []
-    for i in 1..7
-        print_challenge_header(3,i)
+    7.times do |i|
+        print_challenge_header(3,i+1)
         immune_member = @borneo.individual_immunity_challenge()
         puts immune_member.to_s_with_color + " won the immunity challenge and is safe from elimination."
         voted_off_member =  @merge_tribe.tribal_council({immune: immune_member})
