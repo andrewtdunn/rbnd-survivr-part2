@@ -21,7 +21,6 @@ class Jury
     end
 
     def report_votes(votes_obj)
-        puts ""
         votes_obj.each do |key, value|
             puts key.to_s_with_color + " received " + value.to_s + " votes."
         end
